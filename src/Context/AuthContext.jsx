@@ -1,5 +1,6 @@
 import { createContext, useState } from "react"
 import axios from "axios"
+import PropTypes from "prop-types"
 
 export const AuthContext = createContext()
 
@@ -48,9 +49,20 @@ export const AuthProvider = ({children})=>{
         }
     }
 
+    const logout = ()=>{
+        setUser(null)
+        setToken(null)
+        localStorage.clear()
+        sessionStorage.clear()
+    }
+
     return (
-        <AuthContext.Provider value={{SignUp,SignIn,user,token}}>
+        <AuthContext.Provider value={{SignUp,SignIn,user,token,logout}}>
             {children}
         </AuthContext.Provider>
     )
 }
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import Logo from "../assets/GadgetHub Logo.png"
 import paymentVector from "../assets/onlinePaymentVector.png"
 import { FaGreaterThan } from "react-icons/fa";
@@ -10,8 +10,10 @@ import OrderSummary from "../Components/CheckoutPage Components/OrderSummary"
 import { CartContext } from "../Context/ShoppingCartContext"
 import { toast } from "react-toastify"
 import Footer from "../Components/Footer"
+import OrderReceived from "../Components/CheckoutPage Components/OrderReceived"
 
 export default function CheckoutPage() {
+  const [ showModal, setShowModal ]= useState(false)
   const { cart } = useContext(CartContext)
   const [orderData, setOrderData] = useState({
     customer : {},
@@ -26,11 +28,12 @@ export default function CheckoutPage() {
     }
     console.log("Final order :", payload);
     toast.success("Order Confirmed")
-    
+     setShowModal(true);
   }
 
   return (
     <div className="flex flex-col w-full">
+           {showModal && <OrderReceived showModal={showModal} setShowModal={setShowModal} />}
          <div className="hidden lg:flex bg-[#191C1F] text-white">
            <div className="flex container mx-auto items-center justify-between w-full h-[7vh] px-5">
              <h1><span className="text-[#ACACAC]">Mon-Sat:</span> 9:00 AM - 5:30 PM</h1>
@@ -39,7 +42,7 @@ export default function CheckoutPage() {
            </div>
         </div>
 
-        <div className="flex justify-between px-3 py-3">
+        <div className="flex justify-between px-3 py-3 container mx-auto">
             <Link to="/"><img src={Logo} alt="" /></Link>
 
             <div className="flex items-center gap-2">
@@ -59,7 +62,7 @@ export default function CheckoutPage() {
                  </h1>
         </div>
 
-      <div  className="py-2 px-5 flex flex-col lg:flex justify-between gap-5 container mx-auto">
+      <div  className="py-2 px-5 flex flex-col lg:flex lg:flex-row justify-between gap-5 container mx-auto w-full">
           <div className="flex flex-col gap-4 w-full lg:w-2/3">
           <CustomerDetailsForm onChange={(data) => setOrderData(prev => ({...prev, customer : data}))} />
           <DeliveryDetails onChange={(value) => setOrderData(prev => ({...prev, deliveryMethod : value}))} />

@@ -105,13 +105,13 @@ export default function HeroSlider() {
         <SwiperSlide>
             <div className="flex justify-between items-center">
                 <div className="bg-gradient-to-b from-[#0D1A56] via-[#4A5DAA] to-[#B4C6F7] relative text-white w-full lg:w-2/3 h-[560px] rounded-2xl flex flex-col justify-center items-center">
-                <div className="absolute left-[75px] w-[40%]">
+                <div className="absolute left-[75px] w-[70%]">
                     <p className="text-[24px]">Iphone 15 Pro Max</p>
                     <h1 className="text-[38px] py-1">FROM ₦1,000,000</h1>
                     <p className="text-[16px]">A17 Pro chip with 6-core GPU Pro camera <br /> system with 48MP main</p>
-                    <Button className=" w-[118px] h-[38px] lg:h-[48px] mt-2 font-semibold text-white" content="Shop now" />
+                    <Button className="w-[118px] h-[38px] lg:h-[48px] mt-2 font-semibold text-white" content="Shop now" />
                 </div>
-                <img src={ProMax} alt="" className="absolute bottom-0 right-0 w-[327.8207092285156px] h-[500.5372619628906px]" />
+                <img src={ProMax} alt="" className="absolute bottom-0 right-0 w-[40%] h-[500.5372619628906px]" />
                 </div>
 
                 <div className="flex flex-col justify-between h-[560px] md:hidden lg:flex lg:w-1/3 ml-5">

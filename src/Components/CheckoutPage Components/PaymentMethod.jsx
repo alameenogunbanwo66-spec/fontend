@@ -16,7 +16,7 @@ export default function PaymentMethod({ onChange }) {
 
         <div
         className={`flex items-center p-3 justify-between my-2 rounded-md h-[54px] w-full 
-        border-[1.5px] ${selectedOption === "delivery" ? "border-[#EF8742]" : "border-[#E8E6E6]"}`}
+        border-[1.5px] ${selectedOption === "delivery" ? "border-[#6C4CF1]" : "border-[#E8E6E6]"}`}
       >
         <div className="flex gap-3">
             <input
@@ -25,7 +25,7 @@ export default function PaymentMethod({ onChange }) {
           value="delivery"
           checked={selectedOption === "delivery"}
           onChange={(e) => setSelectedOption(e.target.value)}
-          className="w-5 h-5 accent-[#EF8742]"
+          className="w-5 h-5 accent-[#6C4CF1]"
         />
         <label>Pay On Delivery</label>
         </div>
@@ -34,7 +34,7 @@ export default function PaymentMethod({ onChange }) {
 
       <div
         className={`flex items-center p-3 justify-between my-2 rounded-md h-[54px] w-full 
-        border-[1.5px] ${selectedOption === "crediCard" ? "border-[#EF8742]" : "border-[#E8E6E6]"}`}
+        border-[1.5px] ${selectedOption === "crediCard" ? "border-[#6C4CF1]" : "border-[#E8E6E6]"}`}
       >
         <div className="flex gap-3">
             <input
@@ -43,7 +43,7 @@ export default function PaymentMethod({ onChange }) {
           value="creditCard"
           checked={selectedOption === "creditCard"}
           onChange={(e) => setSelectedOption(e.target.value)}
-          className="w-5 h-5 accent-[#EF8742]"
+          className="w-5 h-5 accent-[#6C4CF1]"
         />
         <label>Pay With Credit Card</label>
         </div>
@@ -52,7 +52,7 @@ export default function PaymentMethod({ onChange }) {
 
        <div
         className={`flex items-center p-3 justify-between my-2 rounded-md h-[54px] w-full 
-        border-[1.5px] ${selectedOption === "payPal" ? "border-[#EF8742]" : "border-[#E8E6E6]"}`}
+        border-[1.5px] ${selectedOption === "payPal" ? "border-[#6C4CF1]" : "border-[#E8E6E6]"}`}
       >
         <div className="flex gap-3">
             <input
@@ -61,7 +61,7 @@ export default function PaymentMethod({ onChange }) {
           value="payPal"
           checked={selectedOption === "payPal"}
           onChange={(e) => setSelectedOption(e.target.value)}
-          className="w-5 h-5 accent-[#EF8742]"
+          className="w-5 h-5 accent-[#6C4CF1]"
         />
         <label>Pay With Pay Pal</label>
         </div>

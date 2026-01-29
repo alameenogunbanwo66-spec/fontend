@@ -10,6 +10,10 @@ import ShoppingCartModal from "./HomePage Components/Shopping Cart/ShoppingCartM
 import { CartContext } from "../Context/ShoppingCartContext"
 import { LikeContext } from "../Context/LikeContext"
 import { useNavigate } from "react-router"
+import { AuthContext } from "../Context/AuthContext"
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"
+import { motion } from "framer-motion"
+import Button from "../Components/Button"
 
 export default function Header() {
   const navigate = useNavigate();
@@ -17,10 +21,9 @@ export default function Header() {
   const [showModal, setShowModal] = useState(false)
   const { cart } = useContext(CartContext)
   const { likes } =  useContext(LikeContext)
+  const { user,logout } = useContext(AuthContext)
 
-  const showCart=()=>{setShowModal(true)}
-
-    const icons= [
+  const icons= [
         {
         id: 1,
         icon: <FiShoppingCart />,
@@ -38,7 +41,7 @@ export default function Header() {
     }
     ]
 
-    const filters = [
+  const filters = [
         {
             id: 1,
             name: "All Categories",
@@ -77,6 +80,49 @@ export default function Header() {
 
     ]
 
+
+  const UserMenu = ()=>{
+    const [isOpen, setIsOpen] = useState(false)
+    const handleLogout= ()=>{
+      logout()
+      setIsOpen(false)
+      navigate("/login")
+    }
+    return (
+      <div className="flex relative gap-2">
+        <div className="flex gap-2 items-center">
+          {icons.map((icon)=> (icon.id === 1 && <button className="relative" onClick={showCart}  key={icon.id}>
+                  <span className="text-3xl">{icon.icon}</span>
+                  {cart.length > 0 && (
+                    <span className="bg-[#6C4CF1] text-white w-6 h-6 rounded-full flex items-center justify-center absolute -top-2 -right-2">
+                      {cart.length}
+                      </span>
+                    )}
+                    </button>) )}
+         <div onClick={()=> setIsOpen(!isOpen)} className="flex items-center">
+          <img className="h-[49px] w-[49px] rounded-full" src={user?.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRadJ-YmNxJTg6v9iO22fzR_65KenYJHFB5zg&s"} alt={user.firstName} />
+          <p className="text-[18px] font-semibold">Hello {user.firstName}</p>
+         </div>
+        </div>
+        <button> {isOpen ? <FaChevronUp /> : <FaChevronDown />}</button>
+
+        {isOpen && (
+          <motion.div initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }} className="absolute top-full right-0 flex flex-col bg-white rounded-md w-[185px] p-3 z-10 gap-1">
+            <Link to="/profile">Profile</Link>
+            <Link to="/help">Help</Link>
+            <button onClick={handleLogout} className="text-[#E60E0E] text-left">Logout</button>
+          </motion.div>
+        )}
+
+      </div>
+    )
+  }
+
+  const showCart=()=>{setShowModal(true)}
+
+  
   const handleSearch = (e) => {
   e.preventDefault();
   if (!searchQuery.trim()) return;
@@ -104,7 +150,8 @@ export default function Header() {
             </form>
 
              <div className="flex gap-5">
-            <div className="flex gap-5">
+          { user ? <UserMenu /> :
+            <div className="flex gap-5 items-center">
               {icons.map((icon) => ( icon.id === 1 ? (
                 <button onClick={showCart} className="relative" key={icon.id}>
                   <span className="text-3xl">{icon.icon}</span>
@@ -123,11 +170,10 @@ export default function Header() {
                   </span>
                 )}
               </Link>) :  (
-                    <Link to={icon.linkTo} key={icon.id}>
-                      <span className="text-3xl">{icon.icon}</span>
-                      </Link>)
+                <Button onClick={()=> navigate("/login")} className="w-[84px] h-[48px] text-white" content="Login" />
+              )
                     ))}
-                </div>
+                </div>}
                 </div>
         </div>
 

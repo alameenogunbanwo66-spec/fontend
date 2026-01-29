@@ -32,7 +32,7 @@ export default function OrderSummary({onConfirm}) {
          </div>
 
 
-         <button onClick={onConfirm} className="w-full h-12 rounded-md text-white bg-[#6C4CF1] hover:bg-[#F4F1FF] flex items-center justify-center my-5">
+         <button onClick={onConfirm} className="w-full h-12 rounded-md text-white bg-[#6C4CF1] hover:bg-[#F4F1FF] hover:text-[#6C4CF1] flex items-center justify-center my-5">
             Confirm Order
          </button>
 
