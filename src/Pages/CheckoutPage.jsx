@@ -44,11 +44,11 @@ export default function CheckoutPage() {
   // Named callback function
   async function paystackCallback(response, orderId) {
     try {
-      await axios.post("http://localhost:5000/api/payments/verify", {
+      await axios.post("https://backend-hooj.onrender.com/api/payments/verify", {
         reference: response.reference,
       });
 
-      await axios.patch(`http://localhost:5000/api/orders/${orderId}/payment`, {
+      await axios.patch(`https://backend-hooj.onrender.com/api/orders/${orderId}/payment`, {
         paymentStatus: "paid",
         paymentMethod: "creditcard",
       });
@@ -72,7 +72,7 @@ export default function CheckoutPage() {
     }
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/payments/card-init", {
+      const { data } = await axios.post("https://backend-hooj.onrender.com/api/payments/card-init", {
         email: orderData.customer.email,
         amount,
       });
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
       });
 
       const orderRes = await axios.post(
-        "http://localhost:5000/api/orders/",
+        "https://backend-hooj.onrender.com/api/orders/",
         {
           customer: orderData.customer,
           items: cart,
@@ -146,7 +146,7 @@ export default function CheckoutPage() {
       }
 
       if (orderData.paymentMethod === "paystack" || orderData.paymentMethod === "paypal") {
-        const paymentRes = await axios.post("http://localhost:5000/api/payments/initialize", {
+        const paymentRes = await axios.post("https://backend-hooj.onrender.com/api/payments/initialize", {
           orderId,
           method: orderData.paymentMethod,
         });

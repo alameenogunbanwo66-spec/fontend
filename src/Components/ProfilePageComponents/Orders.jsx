@@ -12,7 +12,7 @@ export default function Orders() {
  useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/orders/myOrders", {
+        const res = await axios.get("https://backend-hooj.onrender.com/api/orders/myOrders", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrders(res.data.orders || []);
@@ -28,7 +28,7 @@ export default function Orders() {
 const handleCancel = async (id) => {
   try {
     await axios.patch(
-      `http://localhost:5000/api/orders/${id}/cancel`,
+      `https://backend-hooj.onrender.com/api/orders/${id}/cancel`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

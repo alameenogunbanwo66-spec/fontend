@@ -8,7 +8,7 @@ export const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const api = axios.create({
-    baseURL: "http://localhost:5000/api/products",
+    baseURL: "https://backend-hooj.onrender.com/api/products",
   });
 
   const fetchProducts = async () => {
